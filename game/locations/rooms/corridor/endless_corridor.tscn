@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://04ajh3m2i5v1"]
+[gd_scene load_steps=14 format=3 uid="uid://04ajh3m2i5v1"]
 
 [ext_resource type="Script" path="res://game/locations/rooms/corridor/endless_corridor.gd" id="1_hw27a"]
 [ext_resource type="Texture2D" uid="uid://bps378cg7bsga" path="res://assets/corridor.png" id="2_4ty4q"]
+[ext_resource type="Script" path="res://game/locations/rooms/corridor/light.gd" id="3_anc5y"]
 [ext_resource type="PackedScene" uid="uid://b1uaan21ulox5" path="res://game/character/character.tscn" id="3_l7chh"]
 [ext_resource type="Texture2D" uid="uid://csbys4yiskwgh" path="res://assets/light_on.png" id="3_vlvdy"]
 
@@ -36,25 +37,31 @@ position = Vector2(576, 324)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("2_4ty4q")
 
-[node name="Light" type="Sprite2D" parent="."]
+[node name="Light" type="Node2D" parent="."]
+script = ExtResource("3_anc5y")
+
+[node name="LightSprite" type="Sprite2D" parent="Light"]
 position = Vector2(576, 324)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("3_vlvdy")
 
 [node name="Area2D" type="Area2D" parent="Light"]
-position = Vector2(-6.00001, -18)
+position = Vector2(549, 243)
+scale = Vector2(4.5, 4.5)
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Light/Area2D"]
 shape = SubResource("CircleShape2D_olh1t")
 
 [node name="ELabel" type="Label" parent="Light"]
-visible = false
-offset_left = -10.8889
-offset_top = -53.3333
-offset_right = -1.8889
-offset_bottom = -30.3333
+offset_left = 554.0
+offset_top = 127.0
+offset_right = 564.0
+offset_bottom = 150.0
+scale = Vector2(2, 2)
 text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Floor" type="StaticBody2D" parent="."]
 
@@ -114,7 +121,7 @@ position = Vector2(1050, 548)
 position = Vector2(363, 454)
 scale = Vector2(5, 5)
 
-[connection signal="body_entered" from="Light/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Light/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Light/Area2D" to="Light" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Light/Area2D" to="Light" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="LeftDoor" to="." method="_on_left_door_body_entered"]
 [connection signal="body_entered" from="RightDoor" to="." method="_on_right_door_body_entered"]
