@@ -1,0 +1,120 @@
+[gd_scene load_steps=13 format=3 uid="uid://04ajh3m2i5v1"]
+
+[ext_resource type="Script" path="res://game/locations/rooms/corridor/endless_corridor.gd" id="1_hw27a"]
+[ext_resource type="Texture2D" uid="uid://bps378cg7bsga" path="res://assets/corridor.png" id="2_4ty4q"]
+[ext_resource type="PackedScene" uid="uid://b1uaan21ulox5" path="res://game/character/character.tscn" id="3_l7chh"]
+[ext_resource type="Texture2D" uid="uid://csbys4yiskwgh" path="res://assets/light_on.png" id="3_vlvdy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_olh1t"]
+radius = 16.8947
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dosnn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aahxi"]
+size = Vector2(49, 483)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6bla"]
+size = Vector2(49, 498)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytlfq"]
+size = Vector2(1261, 41)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sa0pj"]
+size = Vector2(1211, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0dhc"]
+size = Vector2(60.5, 298)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08l5s"]
+size = Vector2(62, 335)
+
+[node name="EndlessCorridor" type="Node2D"]
+script = ExtResource("1_hw27a")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("2_4ty4q")
+
+[node name="Light" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("3_vlvdy")
+
+[node name="Area2D" type="Area2D" parent="Light"]
+position = Vector2(-6.00001, -18)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Light/Area2D"]
+shape = SubResource("CircleShape2D_olh1t")
+
+[node name="ELabel" type="Label" parent="Light"]
+visible = false
+offset_left = -10.8889
+offset_top = -53.3333
+offset_right = -1.8889
+offset_bottom = -30.3333
+text = "E"
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Floor"]
+position = Vector2(0, 615)
+shape = SubResource("WorldBoundaryShape2D_dosnn")
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="LeftWall"]
+position = Vector2(24.5, 199.5)
+shape = SubResource("RectangleShape2D_aahxi")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="RightWall"]
+position = Vector2(1127.5, 192)
+shape = SubResource("RectangleShape2D_r6bla")
+
+[node name="Roof" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Roof"]
+position = Vector2(569, 7)
+shape = SubResource("RectangleShape2D_ytlfq")
+
+[node name="Platform" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Platform"]
+position = Vector2(579.5, 333)
+shape = SubResource("RectangleShape2D_sa0pj")
+one_way_collision = true
+
+[node name="LeftDoor" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape2D" parent="LeftDoor"]
+position = Vector2(5.75, 547)
+shape = SubResource("RectangleShape2D_r0dhc")
+
+[node name="RightDoor" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape2D" parent="RightDoor"]
+position = Vector2(1147, 552.5)
+shape = SubResource("RectangleShape2D_08l5s")
+
+[node name="LeftMarker" type="Marker2D" parent="."]
+position = Vector2(100, 550)
+scale = Vector2(5, 5)
+
+[node name="RightMarker" type="Marker2D" parent="."]
+position = Vector2(1050, 548)
+
+[node name="Character" parent="." instance=ExtResource("3_l7chh")]
+position = Vector2(363, 454)
+scale = Vector2(5, 5)
+
+[connection signal="body_entered" from="Light/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Light/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="LeftDoor" to="." method="_on_left_door_body_entered"]
+[connection signal="body_entered" from="RightDoor" to="." method="_on_right_door_body_entered"]
