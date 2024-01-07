@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Character
 
 @onready var animated_sprite = $AnimatedSprite
 
@@ -8,6 +8,7 @@ const SPEED = 400.0
 const JUMP_VELOCITY = -1000.0
 const GRAVITY = 1500
 
+var key_number = 0
 
 func _physics_process(delta):
 	move(delta)
@@ -49,3 +50,10 @@ func fall(delta):
 		velocity.y += GRAVITY * delta
 
 		animated_sprite.play("jump")
+
+
+func dead():
+	self.position = get_node("/root/EndlessCorridor/restartm").position
+	for i in get_node("/root/EndlessCorridor").fragments:
+			i.on()
+	get_node("/root/EndlessCorridor").switch_light()

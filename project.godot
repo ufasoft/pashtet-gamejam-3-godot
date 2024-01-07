@@ -11,13 +11,20 @@ config_version=5
 [application]
 
 config/name="NeclorGameJam"
-run/main_scene="res://game/locations/rooms/corridor/endless_corridor.tscn"
+run/main_scene="res://ui/start/start.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+
+[autoload]
+
+GlobalAudioStreamPlayer="*res://ui/audio_stream_player.tscn"
 
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+
+[gui]
+
+theme/custom_font="res://assets/font/Roboto-Regular.ttf"
 
 [input]
 
@@ -98,6 +105,9 @@ action={
 
 2d_physics/layer_1="walls"
 2d_physics/layer_2="platforms"
+2d_physics/layer_3="player"
+2d_physics/layer_4="ghost"
+2d_physics/layer_5="key"
 
 [rendering]
 
