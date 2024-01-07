@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 [autoload]
 
 GlobalAudioStreamPlayer="*res://ui/audio_stream_player.tscn"
+Sfx="*res://ui/sfx.tscn"
 
 [display]
 

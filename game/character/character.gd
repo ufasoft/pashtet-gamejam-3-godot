@@ -3,6 +3,7 @@ class_name Character
 
 @onready var animated_sprite = $AnimatedSprite
 
+@onready var audio_stream_player = $AudioStreamPlayer
 
 const SPEED = 400.0
 const JUMP_VELOCITY = -1000.0
@@ -27,12 +28,17 @@ func control():
 
 	match direction:
 		1:
+			if !audio_stream_player.playing:
+				audio_stream_player.play()
 			animated_sprite.flip_h = false
 			animated_sprite.play("move")
 		-1:
+			if !audio_stream_player.playing:
+				audio_stream_player.play()
 			animated_sprite.flip_h = true
 			animated_sprite.play("move")
 		0:
+			audio_stream_player.stop()
 			animated_sprite.play("idle")
 
 func jump():
@@ -48,7 +54,7 @@ func jump_off():
 func fall(delta):
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
-
+		audio_stream_player.stop()
 		animated_sprite.play("jump")
 
 

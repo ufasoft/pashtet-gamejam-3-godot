@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://b1uaan21ulox5"]
+[gd_scene load_steps=15 format=3 uid="uid://b1uaan21ulox5"]
 
 [ext_resource type="Texture2D" uid="uid://nahoemcfx6q7" path="res://assets/character_animation.png" id="1_h56yu"]
 [ext_resource type="Script" path="res://game/character/character.gd" id="1_wsemb"]
+[ext_resource type="AudioStream" uid="uid://c65nxph5h8myh" path="res://assets/sound/step.mp3" id="3_dm5hu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ie11"]
 atlas = ExtResource("1_h56yu")
@@ -116,3 +117,8 @@ drag_right_margin = 0.1
 drag_bottom_margin = 0.1
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dm5hu")
+volume_db = -20.0
+pitch_scale = 2.0

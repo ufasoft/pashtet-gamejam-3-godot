@@ -9,12 +9,11 @@ func _ready():
 func _on_body_entered(body):
 	body.key_number += 1
 	off()
-
+	Sfx.play_collect()
 
 func _physics_process(delta):
 	if !is_work:
 		area_2d.monitoring = false
-
 
 func on():
 	self.visible = true

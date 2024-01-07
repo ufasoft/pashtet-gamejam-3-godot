@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4y3if45u32l4"]
+[gd_scene load_steps=11 format=3 uid="uid://c4y3if45u32l4"]
 
+[ext_resource type="Script" path="res://game/locations/rooms/end_room/end_room.gd" id="1_ow4vh"]
 [ext_resource type="Texture2D" uid="uid://ctwo55j7rmv5c" path="res://assets/end_location.png" id="2_04226"]
+[ext_resource type="AudioStream" uid="uid://ch22ts2s5u243" path="res://assets/sound/ghost.mp3" id="2_boj8v"]
 [ext_resource type="Script" path="res://game/locations/rooms/end_room/character.gd" id="3_m3uwq"]
 [ext_resource type="PackedScene" uid="uid://b1uaan21ulox5" path="res://game/character/character.tscn" id="3_x0tmi"]
 [ext_resource type="PackedScene" uid="uid://xs3n7ofe5h5r" path="res://game/enemy/ghost/ghost.tscn" id="4_vq5r0"]
@@ -18,6 +20,11 @@ size = Vector2(1261, 41)
 
 [node name="EndRoom" type="Node2D"]
 modulate = Color(0.25098, 0.25098, 0.25098, 1)
+script = ExtResource("1_ow4vh")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_boj8v")
+volume_db = -30.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -42,7 +49,7 @@ shape = SubResource("RectangleShape2D_b811l")
 [node name="RightWall" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape" type="CollisionShape2D" parent="RightWall"]
-position = Vector2(1125, 367)
+position = Vector2(1143, 346)
 shape = SubResource("RectangleShape2D_w1uii")
 
 [node name="Roof" type="StaticBody2D" parent="."]

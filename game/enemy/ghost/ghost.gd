@@ -17,6 +17,8 @@ var knockback_ready = true
 var player : Node
 
 
+
+
 func turn_off():
 	state = State.TURN_OFF
 
@@ -28,7 +30,7 @@ func _ready():
 	player = get_node("/root/EndlessCorridor/Character")
 	if player == null:
 		player = get_node("/root/EndRoom/Character")
-		await get_tree().create_timer(2).timeout 
+		await get_tree().create_timer(3).timeout 
 		state = State.WAIT
 
 

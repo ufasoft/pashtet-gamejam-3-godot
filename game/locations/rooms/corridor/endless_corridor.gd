@@ -50,6 +50,7 @@ func _physics_process(delta):
 		$Sprite2D.visible = true
 
 func switch_light():
+	Sfx.play_switch()
 	if corridors[current_corridor_index] == 0:
 		corridors[current_corridor_index] = 1
 		light.turn_on_light(1)
@@ -61,12 +62,14 @@ func _input(event):
 	if Input.is_action_just_pressed("action") and light.somebody_close:
 		switch_light()
 	elif Input.is_action_just_pressed("action") and $door/Label.visible:
+		Sfx.play_door()
 		get_tree().change_scene_to_file("res://game/locations/rooms/end_room/end_room.tscn")
 		GlobalAudioStreamPlayer.stop()
 
 
 func _on_left_door_body_entered(body):
 	body.position = right_marker.position
+	Sfx.play_door()
 	
 	last_corridor_index = current_corridor_index
 	
@@ -79,7 +82,7 @@ func _on_left_door_body_entered(body):
 
 func _on_right_door_body_entered(body):
 	body.position = left_marker.position
-	
+	Sfx.play_door()
 	last_corridor_index = current_corridor_index
 	
 	if current_corridor_index == corridors.size() - 1:
