@@ -45,7 +45,7 @@ func _ready():
 
 	fragments = [key_fragment, key_fragment_2, key_fragment_3, key_fragment_4]
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if collected:
 		$Sprite2D.visible = true
 
@@ -58,7 +58,7 @@ func switch_light():
 		corridors[current_corridor_index] = 0
 		light.turn_off_light()
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("action") and light.somebody_close:
 		switch_light()
 	elif Input.is_action_just_pressed("action") and $door/Label.visible:
@@ -103,11 +103,11 @@ func show_arrow(i):
 		right_arrow.visible = true
 
 
-func _on_door_body_entered(body):
+func _on_door_body_entered(_body):
 	if collected:
 		$door/Label.visible = true
 
-func _on_door_body_exited(body):
+func _on_door_body_exited(_body):
 	if collected:
 		$door/Label.visible = false
 

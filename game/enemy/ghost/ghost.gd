@@ -27,8 +27,9 @@ func turn_on():
 	knockback_ready = true
 
 func _ready():
-	player = get_node("/root/EndlessCorridor/Character")
-	if player == null:
+	if get_node("/root/EndlessCorridor/Character"):
+		player = get_node("/root/EndlessCorridor/Character")
+	else: # player == null:
 		player = get_node("/root/EndRoom/Character")
 		await get_tree().create_timer(3).timeout 
 		state = State.WAIT
@@ -72,7 +73,7 @@ func stop_knockback():
 	knockback_ready = true
 
 
-func _on_area_2d_body_entered(body):
+func _on_area_2d_body_entered(_body):
 	player.dead()
 
 

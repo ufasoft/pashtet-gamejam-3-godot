@@ -10,9 +10,13 @@ config_version=5
 
 [application]
 
-config/name="NeclorGameJam"
+config/name="NeclorJam"
 run/main_scene="res://ui/start/start.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0.168627, 0.0392157, 0.0627451, 1)
+boot_splash/image="res://assets/key_fragment.png"
+boot_splash/use_filter=false
+config/icon="res://assets/key_fragment.png"
 
 [autoload]
 
@@ -113,4 +117,5 @@ action={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.168627, 0.0392157, 0.0627451, 1)

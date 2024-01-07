@@ -94,11 +94,11 @@ func turn_off_light():
 			print(i)
 			i.on()
 
-func _on_area_2d_body_entered(body):
+func _on_area_2d_body_entered(_body):
 	e_label.visible = true
 	somebody_close = true
 
-func _on_area_2d_body_exited(body):
+func _on_area_2d_body_exited(_body):
 	e_label.visible = false
 	somebody_close = false
 

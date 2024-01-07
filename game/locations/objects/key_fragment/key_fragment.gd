@@ -11,7 +11,7 @@ func _on_body_entered(body):
 	off()
 	Sfx.play_collect()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if !is_work:
 		area_2d.monitoring = false
 
