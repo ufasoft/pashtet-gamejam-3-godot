@@ -72,11 +72,8 @@ func _on_left_door_body_entered(body):
 	Sfx.play_door()
 	
 	last_corridor_index = current_corridor_index
-	
-	if current_corridor_index == 0:
-		current_corridor_index = corridors.size() - 1
-	else:
-		current_corridor_index -= 1
+
+	current_corridor_index = (current_corridor_index - 1 + corridors.size()) % corridors.size()
 
 	light.check_light(corridors[current_corridor_index])
 
@@ -84,11 +81,8 @@ func _on_right_door_body_entered(body):
 	body.position = left_marker.position
 	Sfx.play_door()
 	last_corridor_index = current_corridor_index
-	
-	if current_corridor_index == corridors.size() - 1:
-		current_corridor_index = 0
-	else:
-		current_corridor_index += 1
+
+	current_corridor_index = (current_corridor_index + 1) % corridors.size()
 
 	light.check_light(corridors[current_corridor_index])
 
